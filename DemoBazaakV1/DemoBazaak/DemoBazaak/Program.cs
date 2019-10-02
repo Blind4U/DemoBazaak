@@ -76,30 +76,30 @@ namespace bazaakolio
 
             while (true)
             {
-                /*
+                
                 // tarkistetaan valmis tilat kommenteina testausta varten
                 if (tietokone.valmispelaaja == true && tietokone.valmiskone == false)
                 {
-                    Console.WriteLine("pelaaja valmis, kone ei");
+                    //Console.WriteLine("pelaaja valmis, kone ei");
                 }
                 else if (tietokone.valmispelaaja == false && tietokone.valmiskone == true)
                 {
-                    Console.WriteLine("kone valmis, pelaaja ei");
+                    //Console.WriteLine("kone valmis, pelaaja ei");
                 }
                 else if (tietokone.valmispelaaja == true && tietokone.valmiskone == true)
                 {
-                    Console.WriteLine("molemmat valmiit");
+                    //Console.WriteLine("molemmat valmiit");
                     tietokone.valmismolemmat = true;
                 }
                 else if (tietokone.valmispelaaja == false && tietokone.valmiskone == false)
                 {
-                    Console.WriteLine("kumpikaan ei ole valmis");
+                    //Console.WriteLine("kumpikaan ei ole valmis");
                 }
                 else
                 {
                     Console.WriteLine("virhe, valmiit tilat error");
                 }
-                */
+                
 
 
                 // jos molemmat valmiit lopetetaan while ja peli
