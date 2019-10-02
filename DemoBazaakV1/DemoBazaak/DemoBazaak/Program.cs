@@ -15,6 +15,7 @@ namespace bazaakolio
         public const int Päämäärä = 20;
 
 
+
         static void Main(string[] args)
         {
             
@@ -26,9 +27,15 @@ namespace bazaakolio
             // Aloitus ohjeet ja aloitus kysymys---------------------------------------------------
 
             Console.WriteLine("\nTervetuloa bazaak peliin!");
-            Console.WriteLine("Tarkoitus on saada korttien summaksi 20 ja voittaa vastustajasi");
-            Console.WriteLine("Jokaisella vuorolla voit päättää otatko uuden kortin, Jättää vuoron välistä, Käyttää bonus kortteja");
-            Console.WriteLine("Tai ilmoittaa olevasi valmis. Huomio! Voit vain kerran pelin aikana ilmoittaa olevasi valmis");
+            Console.WriteLine("Tarkoituksesi on saada korttien summaksi 20 tai mahdollisimman lähelle sitä");
+            Console.WriteLine("Jokaisella vuorolla voit päättää otatko uuden kortin, Jättää vuoron välistä,");
+            Console.WriteLine("Käyttää bonus kortteja Tai ilmoittaa olevasi valmis.");
+            Console.WriteLine("Häviät jos ylität päämäärän mutta voit käyttää tämän sattuessa bonus kortteja");
+            Console.WriteLine("Huomio! Voit käyttää vain bonus kortin kerran tämän jälkeen se poistuu valikoimastasi");
+            Console.WriteLine("Huomio! Voit vain kerran pelin aikana ilmoittaa olevasi valmis");
+
+
+
             Console.WriteLine("Pelaat tietokonetta vastaan\n");
 
 
@@ -66,9 +73,14 @@ namespace bazaakolio
             tietokone.Summapelaaja = 0;
 
 
-            Console.WriteLine("Aloitetaan. Onnea peliin!");
 
-            Console.WriteLine("BONUKSET EI KÄYTÖSSÄ TÄSSÄ VERSIOSSA!");
+            // Bonus korttien arvonta
+            tietokone.BonusArvonta();
+
+
+            Console.WriteLine("\nAloitetaan. Onnea peliin!");
+
+            //Console.WriteLine("BONUKSET EI KÄYTÖSSÄ TÄSSÄ VERSIOSSA!");
 
             // Peli alkaa----------------------------------------------------
             // Peli alkaa----------------------------------------------------
