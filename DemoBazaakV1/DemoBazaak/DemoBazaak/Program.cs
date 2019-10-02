@@ -80,7 +80,7 @@ namespace bazaakolio
 
             Console.WriteLine("\nAloitetaan. Onnea peliin!");
 
-            //Console.WriteLine("BONUKSET EI KÄYTÖSSÄ TÄSSÄ VERSIOSSA!");
+           
 
             // Peli alkaa----------------------------------------------------
             // Peli alkaa----------------------------------------------------

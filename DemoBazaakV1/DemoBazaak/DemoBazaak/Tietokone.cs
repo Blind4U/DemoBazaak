@@ -61,7 +61,7 @@ namespace bazaakolio
             koneenbonus = false;
 
 
-        BonusTulostusKone();
+            BonusTulostusKone();
 
             Console.Write("\n");
 
@@ -72,22 +72,10 @@ namespace bazaakolio
                 case 1:
                     Console.WriteLine("Case 1");
                     KoneUusikortti();
-                    break;
-                /*
-            case 2:
-                Console.WriteLine("Case 2");
-                KoneEikortti();
-                break;
-                */
-                /*
-            case 3:
-                //Console.WriteLine("Case 3");
-                KoneBonuskortti();
-                break;
-                */
+                    break;            
                 case 4:
                     Console.WriteLine("Case 4");
-                    Mietintää();
+                    KoneAli();
                     break;
                 case 5:
                     Console.WriteLine("Case 5");
@@ -116,11 +104,11 @@ namespace bazaakolio
 
             else if (Summakone != Program.Päämäärä)
             {
-                if (Summakone <= 14)
+                if (Summakone <= 13)
                 {
                     Päätös = 1;
                 }
-                else if (Summakone > 14 && Summakone < Program.Päämäärä)
+                else if (Summakone >= 14 && Summakone < Program.Päämäärä)
                 {
                     Päätös = 4;
                 }
@@ -141,8 +129,521 @@ namespace bazaakolio
 
         }
 
+        public void KoneAli()
+        {
+            
+            // summakone on 14-19
+            Console.WriteLine("KoneAli summakone on 14-19");
+            Console.WriteLine("Summakone" + Summakone);
+            Console.WriteLine("Summapelaaja" + Summapelaaja);
+
+
+            if (Summapelaaja >= Program.Päämäärä)
+            {
+                Console.WriteLine("pelaaja 20 tai yli");
+
+                if (Summapelaaja > Program.Päämäärä)
+                {
+                    Console.WriteLine("pelaaja yli 20");
+                    if (valmispelaaja == true)
+                    {
+                        Konevalmis();
+                        goto aliloppu;
+                    }
+                    else
+                    {
+                        KoneEikortti();
+                        goto aliloppu;
+
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("pelaaja on 20");
+                    // pakko bunukset
+                    KoneBonusPlussa();
+
+                    if (koneenbonus == true)
+                    {
+                        Console.WriteLine("kone käytti bonuksen");
+                        goto aliloppu;
+                    }
+                    else
+                    {
+                        KoneUusikortti();
+                        goto aliloppu;
+                    }
+                }
+            }
+            else
+            {
+                Console.WriteLine("pelaaja alle 20");
+
+                if (Summakone == Summapelaaja)
+                {
+                    KoneTasan();
+                    goto aliloppu;
+
+                }
+                else
+                {
+                    Console.WriteLine("eri");
+                    KoneSuhde();
+                    goto aliloppu;
+
+                }
+            }         
+                                 
+            aliloppu:
+
+            Console.WriteLine("KoneAli loppu");
+
+
+        }
+
+        public void KoneYli()
+        {
+            Console.WriteLine("kone yli alku");
+
+            Console.WriteLine("Kone on yli päämäärän");
+
+            KoneBonusMiinus();
+
+            if (koneenbonus == true)
+            {
+                Console.WriteLine("Kone käytti bonus kortin");
+                goto yliloppu;
+            }
+            else
+            {
+                Console.WriteLine("Kone ei ollu bonuksia");
+                Konevalmis();
+                goto yliloppu;
+            }
+
+        yliloppu:
+            Console.WriteLine("kone yli loppu");
+        }
+
+        public void KoneSuhde()
+        {
+            // summakone ja summapelaaja eri ja 14-19
+            Console.WriteLine("konesuhde alku");
+
+            if (Summakone > Summapelaaja)
+            {
+                if (valmispelaaja == true)
+                {
+                    Konevalmis();
+                    goto suhdeloppu;
+                }
+                else
+                {
+                    KoneEikortti();
+                    goto suhdeloppu;
+                }
+
+            }
+            else if (Summakone < Summapelaaja)
+            {
+
+                Console.WriteLine("bonuksia?!");
+                KoneBonusPlussa();
+
+
+
+                if (koneenbonus == true)
+                {
+                    Console.WriteLine("kone käytti bonuksen");
+                    goto suhdeloppu;
+                }
+                else
+                {
+                    Console.WriteLine("kone ottaa uuden kortin koska bunukset ei käynny");
+                    KoneUusikortti();
+                    goto suhdeloppu;
+                }
+
+
+            }
+            else
+            {
+                Console.WriteLine("ei mahdollista tässä");
+            }
+
+
+
+
+
+
+        suhdeloppu:
+            Console.WriteLine("konesuhde loppu");
+        }
+
+        public void KoneTasan()
+        {
+            // kone ja pelaaja tasan
+            Random random = new Random();
+            int riski = random.Next(1, 100);
+            Console.WriteLine("Kone riski: " + riski);
+
+
+            if (Summakone <= 16)
+            {
+
+                if (valmispelaaja == true)
+                {
+                    //KoneBonusKysymys();
+
+                    if (koneenbonus == false && riski >= 20)
+                    {
+                        KoneUusikortti();
+                        goto tasanloppu;
+
+                    }
+                    else
+                    {
+                        Konevalmis();
+                        goto tasanloppu;
+
+                    }
+                }
+                else if (valmispelaaja == false && riski >= 50)
+                {
+                    KoneUusikortti();
+                    goto tasanloppu;
+
+                }
+                else
+                {
+                    KoneEikortti();
+                    goto tasanloppu;
+
+                }
+            }
+            else if (Summakone == 17)
+            {
+                if (valmispelaaja == true)
+                {
+                    //KoneBonusKysymys();
+
+                    if (koneenbonus == false && riski <= 50)
+                    {
+                        KoneUusikortti();
+                        goto tasanloppu;
+
+                    }
+                    else
+                    {
+                        Konevalmis();
+                        goto tasanloppu;
+
+                    }
+                }
+                else if (valmispelaaja == false && riski <= 50)
+                {
+                    KoneUusikortti();
+                    goto tasanloppu;
+
+                }
+                else
+                {
+                    KoneEikortti();
+                    goto tasanloppu;
+
+                }
+
+
+            }
+            else if (Summakone == 18)
+            {
+                if (valmispelaaja == true)
+                {
+                    //KoneBonusKysymys();
+
+                    if (koneenbonus == false && riski >= 90)
+                    {
+                        KoneUusikortti();
+                        goto tasanloppu;
+
+                    }
+                    else
+                    {
+                        Konevalmis();
+                        goto tasanloppu;
+
+                    }
+                }
+                else if (valmispelaaja == false && riski >= 90)
+                {
+                    KoneUusikortti();
+                    goto tasanloppu;
+
+                }
+                else
+                {
+                    KoneEikortti();
+                    goto tasanloppu;
+
+                }
+
+            }
+            else if (Summakone == 19)
+            {
+                if (valmispelaaja == true)
+                {
+                    //KoneBonusKysymys();
+
+                    if (koneenbonus == false && riski >= 90)
+                    {
+                        KoneUusikortti();
+                        goto tasanloppu;
+
+                    }
+                    else
+                    {
+                        Konevalmis();
+                        goto tasanloppu;
+
+                    }
+
+                }
+                else if (valmispelaaja == false && riski >= 90)
+                {
+                    KoneUusikortti();
+                    goto tasanloppu;
+
+                }
+                else
+                {
+                    KoneEikortti();
+                    goto tasanloppu;
+
+                }
+
+            }
+            else
+            {
+                Console.WriteLine("Kone riski metodi ei pitäisi olla aktiivinen");
+                KoneEikortti();
+                goto tasanloppu;
+            }
+
+        tasanloppu:
+            Console.WriteLine("riski metodi loppu");
+
+        }
+
+        public void KoneBonusPlussa()
+        {
+            Console.WriteLine("koneplussa alku");
+
+            BonusTulostusKone();
+
+           
+            int a;
+            int b;
+            //bool A;
+            //bool B;
+
+            a = BonusK[0];
+            b = BonusK[1];
+
+            // debug tietoa
+            if (a != 0 && b != 0)
+            {
+                Console.WriteLine("a ja b saatavilla");
+                //A = true;
+                //B = true;
+            }
+            else if (a != 0 && b == 0)
+            {
+                Console.WriteLine("a saatavilla");
+                //A = true;
+
+            }
+            else if (a == 0 && b != 0)
+            {
+                Console.WriteLine("b saatavilla");
+                //B = true;
+
+            }
+            else
+            {
+                Console.WriteLine("a tai b ei saatavilla");
+                //A = false;
+                //B = false;
+                goto plussaloppu;
+            }
+
+
+            
+
+            if (Summakone + a <= Program.Päämäärä && Summakone + a >= Summapelaaja)
+            {
+                KoneBonuskortti1();
+                goto plussaloppu;
+            }
+            else if (Summakone + b <= Program.Päämäärä && Summakone + b >= Summapelaaja)
+            {
+                KoneBonuskortti2();
+                goto plussaloppu;
+            }
+            else
+            {
+                Console.WriteLine("bonus korttit a ja b menisi yli 20");
+            }
+
+
+
+
+
+
+
+        plussaloppu:
+            Console.WriteLine("koneplussa loppu");
+
+
+        }
+
+        public void KoneBonusMiinus()
+        {
+            Console.WriteLine("konemiinus alku");
+
+
+
+
+
+
+
+
+            Console.WriteLine("konemiinus loppu");
+
+        }
+        public void Konevalmis()
+        {
+            Console.WriteLine("Kone valmis");
+            valmiskone = true;
+        }
+
+        public void KoneUusikortti()
+        {
+            Console.WriteLine("Koneen uusi kortti");
+            Random random = new Random();
+            int arvottukortti = random.Next(Program.Pieninpakkaluku, Program.Suurinpakkaluku);
+            Console.WriteLine("Koneen jaettu kortti on: " + arvottukortti);
+            Summakone += arvottukortti;
+            Console.WriteLine("Koneen summa on nyt: " + Summakone);
+        }
+
+        public void KoneEikortti()
+        {
+            Console.WriteLine("Kone Ei korttia");
+        }
+
+        public void BonusTulostusKone()
+        {
+            /*
+            Console.Write("Koneen bonus kortit:  ");
+
+            int i = 0;
+            while (i < BonusK.Length)
+            {
+                Console.Write(BonusK[i] + "  ");
+                i++;
+            }
+
+            Console.Write("\n");
+            */
+
+            //Console.WriteLine("Koneen bonus kortit: {0}, {1}, {2} ja {3}", BonusK[0], BonusK[1], BonusK[2], BonusK[3]);
+
+            Console.Write("Koneen bonus kortit:");
+
+            if (BonusK[0] != 0)
+            {
+                Console.Write("  a) " + BonusK[0]);
+                Console.Write(",");
+            }
+
+            if (BonusK[1] != 0)
+            {
+                Console.Write("  b) " + BonusK[1]);
+                Console.Write(",");
+            }
+
+            if (BonusK[2] != 0)
+            {
+                Console.Write("  c) " + BonusK[2]);
+                Console.Write(",");
+            }
+
+            if (BonusK[3] != 0)
+            {
+                Console.Write("  d) " + BonusK[3]);
+            }
+
+
+
+
+            if (BonusK[0] == 0 && BonusK[1] == 0 && BonusK[2] == 0 && BonusK[3] == 0)
+            {
+                Console.WriteLine("Koneela ei ole Bonus kortteja");
+            }
+            else
+            {
+                //Console.WriteLine("");
+            }
+
+        }
+
+
+        public void KoneBonuskortti1()
+        {
+            Console.WriteLine("Kone valitsi Bonus kortin: " + BonusK[0]);
+            Summakone += BonusK[0];
+            Console.WriteLine("Bonus kortin jälkeen koneen summa on: " + Summakone);
+            BonusK[0] = 0;
+            koneenbonus = true;
+
+        }
+        public void KoneBonuskortti2()
+        {
+            Console.WriteLine("Kone valitsi Bonus kortin: " + BonusK[1]);
+            Summakone += BonusK[1];
+            Console.WriteLine("Bonus kortin jälkeen koneen summa on: " + Summakone);
+            BonusK[1] = 0;
+            koneenbonus = true;
+
+        }
+        public void KoneBonuskortti3()
+        {
+            Console.WriteLine("Kone valitsi Bonus kortin: " + BonusK[2]);
+            Summakone += BonusK[2];
+            Console.WriteLine("Bonus kortin jälkeen koneen summa on: " + Summakone);
+            BonusK[2] = 0;
+            koneenbonus = true;
+
+        }
+        public void KoneBonuskortti4()
+        {
+            Console.WriteLine("Kone valitsi Bonus kortin: " + BonusK[3]);
+            Summakone += BonusK[3];
+            Console.WriteLine("Bonus kortin jälkeen koneen summa on: " + Summakone);
+            BonusK[3] = 0;
+            koneenbonus = true;
+
+        }
+
+
+
+
+        /*
+
+
         public void Mietintää()
         {
+            
             // Case 4
             // pelaaja on 20, pakko yrittää voittoa
             if (Summapelaaja == Program.Päämäärä)
@@ -171,30 +672,12 @@ namespace bazaakolio
                     if (valmispelaaja == true)
                     {
                         //Console.WriteLine("pelaaja valmis ja Kone riski");
-                        KoneBonusKysymys();
-
-                        if (koneenbonus == false)
-                        {
-                            Koneriski();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Kone käytti bonus kortin");
-                        }
+                        //Koneriski();
                     }
                     else
                     {
                         //Console.WriteLine("pelaaja EI valmis ja Kone riski");
-                        KoneBonusKysymys();
-
-                        if (koneenbonus == false)
-                        {
-                            Koneriski();
-                        }
-                        else
-                        {
-                            Console.WriteLine("Kone käytti bonus kortin");
-                        }
+                        //Koneriski();
                     }
                 }
                 else if (Summakone != Summapelaaja)
@@ -281,165 +764,8 @@ namespace bazaakolio
             //Console.WriteLine("mietintää metodi loppu");
         }
 
-        public void KoneYli()
-        {
-            Console.WriteLine("Kone on yli päämäärän");
-            KoneBonusKysymys();
 
-            if (koneenbonus == false)
-            {
-                Konevalmis();
-            }
-            else
-            {
-                Console.WriteLine("Kone käytti bonus kortin");
-            }
-        }
-
-        public void Konevalmis()
-        {
-            Console.WriteLine("Kone valmis");
-            valmiskone = true;
-        }
-
-        public void Koneriski()
-        {
-            Random random = new Random();
-            int riski = random.Next(1, 100);
-
-            if (Summakone == 16)
-            {
-                if (riski > 20)
-                {
-                    Console.WriteLine("Kone riski: " + riski);
-                    KoneUusikortti();
-                }
-                else
-                {
-                    Console.WriteLine("Kone riski: " + riski);
-                    Konevalmis();
-                }
-            }
-            else if (Summakone == 17)
-            {
-                if (riski > 50)
-                {
-                    Console.WriteLine("Kone riski: " + riski);
-                    KoneUusikortti();
-                }
-                else
-                {
-                    Console.WriteLine("Kone riski: " + riski);
-                    Konevalmis();
-                }
-
-            }
-            else if (Summakone == 18)
-            {
-                if (riski > 80)
-                {
-                    Console.WriteLine("Kone riski: " + riski);
-                    KoneUusikortti();
-                }
-                else
-                {
-                    Console.WriteLine("Kone riski: " + riski);
-                    Konevalmis();
-                }
-
-            }
-            else if (Summakone == 19)
-            {
-                if (riski > 90)
-                {
-                    Console.WriteLine("Kone riski: " + riski);
-                    KoneUusikortti();
-                }
-                else
-                {
-                    Console.WriteLine("Kone riski: " + riski);
-                    Konevalmis();
-                }
-
-            }
-            else
-            {
-                Console.WriteLine("Kone riski: " + riski);
-                //Console.WriteLine("riski melkein mitätön, uusi kortti");
-                KoneUusikortti();
-            }
-        }
-
-        public void KoneUusikortti()
-        {
-            Console.WriteLine("Koneen uusi kortti");
-            Random random = new Random();
-            int arvottukortti = random.Next(Program.Pieninpakkaluku, Program.Suurinpakkaluku);
-            Console.WriteLine("Koneen jaettu kortti on: " + arvottukortti);
-            Summakone += arvottukortti;
-            Console.WriteLine("Koneen summa on nyt: " + Summakone);
-        }
-
-        public void KoneEikortti()
-        {
-            Console.WriteLine("Kone Ei korttia");
-        }
-
-        public void BonusTulostusKone()
-        {
-            /*
-            Console.Write("Koneen bonus kortit:  ");
-
-            int i = 0;
-            while (i < BonusK.Length)
-            {
-                Console.Write(BonusK[i] + "  ");
-                i++;
-            }
-
-            Console.Write("\n");
-            */
-
-            //Console.WriteLine("Koneen bonus kortit: {0}, {1}, {2} ja {3}", BonusK[0], BonusK[1], BonusK[2], BonusK[3]);
-
-            Console.Write("Koneen bonus kortit:");
-
-            if (BonusK[0] != 0)
-            {
-                Console.Write("  a) " + BonusK[0]);
-                Console.Write(",");
-            }
-
-            if (BonusK[1] != 0)
-            {
-                Console.Write("  b) " + BonusK[1]);
-                Console.Write(",");
-            }
-
-            if (BonusK[2] != 0)
-            {
-                Console.Write("  c) " + BonusK[2]);
-                Console.Write(",");
-            }
-
-            if (BonusK[3] != 0)
-            {
-                Console.Write("  d) " + BonusK[3]);
-            }
-
-
-
-
-            if (BonusK[0] == 0 && BonusK[1] == 0 && BonusK[2] == 0 && BonusK[3] == 0)
-            {
-                Console.WriteLine("Koneela ei ole Bonus kortteja");
-            }
-            else
-            {
-                //Console.WriteLine("");
-            }
-
-        }
+       
 
         public void KoneBonusKysymys()
         {
@@ -547,14 +873,14 @@ namespace bazaakolio
                 else
                 {
                     Console.WriteLine("a tai b ei käytössä");
-                }                                                                                                            
+                }
             }
             else
             {
                 Console.WriteLine("a tai b ei sopiva");
             }
 
-            plussavalmis:
+        plussavalmis:
 
             Console.WriteLine("plus bonus loppuu");
 
@@ -669,54 +995,16 @@ namespace bazaakolio
                 Console.WriteLine("ei mahdollista käyttää c tai d");
             }
 
-            miinusvalmis:
+        miinusvalmis:
 
             Console.WriteLine("miinus loppuu");
 
         }
-       
-
-        public void KoneBonuskortti1()
-        {
-            Console.WriteLine("Kone valitsi Bonus kortin: " + BonusK[0]);
-            Summakone += BonusK[0];
-            Console.WriteLine("Bonus kortin jälkeen koneen summa on: " + Summakone);
-            BonusK[0] = 0;
-            koneenbonus = true;
-
-        }
-        public void KoneBonuskortti2()
-        {
-            Console.WriteLine("Kone valitsi Bonus kortin: " + BonusK[1]);
-            Summakone += BonusK[1];
-            Console.WriteLine("Bonus kortin jälkeen koneen summa on: " + Summakone);
-            BonusK[1] = 0;
-            koneenbonus = true;
-
-        }
-        public void KoneBonuskortti3()
-        {
-            Console.WriteLine("Kone valitsi Bonus kortin: " + BonusK[2]);
-            Summakone += BonusK[2];
-            Console.WriteLine("Bonus kortin jälkeen koneen summa on: " + Summakone);
-            BonusK[2] = 0;
-            koneenbonus = true;
-
-        }
-        public void KoneBonuskortti4()
-        {
-            Console.WriteLine("Kone valitsi Bonus kortin: " + BonusK[3]);
-            Summakone += BonusK[3];
-            Console.WriteLine("Bonus kortin jälkeen koneen summa on: " + Summakone);
-            BonusK[3] = 0;
-            koneenbonus = true;
-
-        }
 
 
 
 
-
+            */
 
 
 
