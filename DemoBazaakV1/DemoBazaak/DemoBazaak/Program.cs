@@ -9,9 +9,7 @@ namespace bazaakolio
 
     class Program
     {
-
-
-
+               
         public const int Suurinpakkaluku = 6;
         public const int Pieninpakkaluku = 1;
         public const int Päämäärä = 20;
@@ -19,16 +17,8 @@ namespace bazaakolio
 
         static void Main(string[] args)
         {
-            // --------------------------------------Mikä tämä on???
-            /*
-            if (args is null)
-            {
-                throw new ArgumentNullException(nameof(args));
-            }
-            */
-
+            
             string kysymys;
-
 
             Tietokone tietokone = new Tietokone();
 
@@ -86,28 +76,31 @@ namespace bazaakolio
 
             while (true)
             {
+                /*
                 // tarkistetaan valmis tilat kommenteina testausta varten
                 if (tietokone.valmispelaaja == true && tietokone.valmiskone == false)
                 {
-                    //Console.WriteLine("pelaaja valmis, kone ei");
+                    Console.WriteLine("pelaaja valmis, kone ei");
                 }
                 else if (tietokone.valmispelaaja == false && tietokone.valmiskone == true)
                 {
-                    //Console.WriteLine("kone valmis, pelaaja ei");
+                    Console.WriteLine("kone valmis, pelaaja ei");
                 }
                 else if (tietokone.valmispelaaja == true && tietokone.valmiskone == true)
                 {
-                    //Console.WriteLine("molemmat valmiit");
+                    Console.WriteLine("molemmat valmiit");
                     tietokone.valmismolemmat = true;
                 }
                 else if (tietokone.valmispelaaja == false && tietokone.valmiskone == false)
                 {
-                    //Console.WriteLine("kumpikaan ei ole valmis");
+                    Console.WriteLine("kumpikaan ei ole valmis");
                 }
                 else
                 {
                     Console.WriteLine("virhe, valmiit tilat error");
                 }
+                */
+
 
                 // jos molemmat valmiit lopetetaan while ja peli
                 if (tietokone.valmismolemmat == true)
@@ -153,15 +146,7 @@ namespace bazaakolio
 
             // Tulokset            
             tietokone.Tulokset();
-
-        /*
-        tietokone.valmispelaaja = false;
-        tietokone.valmiskone = false;
-        tietokone.valmismolemmat = false;
-
-        tietokone.Summakone = 0;
-        tietokone.Summapelaaja = 0;
-        */
+                    
 
         // Lopetus kysymys
         kysymyslopetus:

@@ -7,8 +7,6 @@ namespace bazaakolio
     class Tietokone
     {
 
-
-
         public int Päätös { get; set; }
 
         public bool valmispelaaja = false;
@@ -47,7 +45,6 @@ namespace bazaakolio
             Console.WriteLine("\nKoneen vuoro!");
             Console.WriteLine("Koneen summa on: " + Summakone);
             Console.WriteLine("pelaajan summa on: " + Summapelaaja);
-            //Console.WriteLine("Uusi kortti, Ei korttia, Bonus kortti, Kone valmis");
 
             Koneif();
 
@@ -176,7 +173,7 @@ namespace bazaakolio
                     }
                     else
                     {
-                        Console.WriteLine("cock");
+                        Console.WriteLine("virhe! kone ja pelaaja ei!");
                     }
                 }
 
@@ -404,7 +401,6 @@ namespace bazaakolio
 
         public void Tulokset()
         {
-            //Tietokone tietokone = new Tietokone();
 
             Console.WriteLine("Tulokset!");
             Console.WriteLine("Koneen summa oli: " + Summakone);
