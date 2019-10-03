@@ -5,7 +5,7 @@ using System.Text;
 namespace bazaakolio
 {
 
-    // tämä versio on v1
+    // tämä versio on v2
 
     class Tietokone
     {
