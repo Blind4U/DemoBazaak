@@ -7,6 +7,9 @@ namespace DemoBazaakV2
 
     // tämä versio on v2
 
+
+
+
     class Tietokone
     {
 
