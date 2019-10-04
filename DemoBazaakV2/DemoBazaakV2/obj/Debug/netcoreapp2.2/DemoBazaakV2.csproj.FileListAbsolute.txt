@@ -1,0 +1,11 @@
+C:\koodit\KooditHarj\Csharp\DemoBazaak\DemoBazaak\DemoBazaakV2\DemoBazaakV2\bin\Debug\netcoreapp2.2\DemoBazaakV2.deps.json
+C:\koodit\KooditHarj\Csharp\DemoBazaak\DemoBazaak\DemoBazaakV2\DemoBazaakV2\bin\Debug\netcoreapp2.2\DemoBazaakV2.runtimeconfig.json
+C:\koodit\KooditHarj\Csharp\DemoBazaak\DemoBazaak\DemoBazaakV2\DemoBazaakV2\bin\Debug\netcoreapp2.2\DemoBazaakV2.runtimeconfig.dev.json
+C:\koodit\KooditHarj\Csharp\DemoBazaak\DemoBazaak\DemoBazaakV2\DemoBazaakV2\bin\Debug\netcoreapp2.2\DemoBazaakV2.dll
+C:\koodit\KooditHarj\Csharp\DemoBazaak\DemoBazaak\DemoBazaakV2\DemoBazaakV2\bin\Debug\netcoreapp2.2\DemoBazaakV2.pdb
+C:\koodit\KooditHarj\Csharp\DemoBazaak\DemoBazaak\DemoBazaakV2\DemoBazaakV2\obj\Debug\netcoreapp2.2\DemoBazaakV2.csprojAssemblyReference.cache
+C:\koodit\KooditHarj\Csharp\DemoBazaak\DemoBazaak\DemoBazaakV2\DemoBazaakV2\obj\Debug\netcoreapp2.2\DemoBazaakV2.csproj.CoreCompileInputs.cache
+C:\koodit\KooditHarj\Csharp\DemoBazaak\DemoBazaak\DemoBazaakV2\DemoBazaakV2\obj\Debug\netcoreapp2.2\DemoBazaakV2.AssemblyInfoInputs.cache
+C:\koodit\KooditHarj\Csharp\DemoBazaak\DemoBazaak\DemoBazaakV2\DemoBazaakV2\obj\Debug\netcoreapp2.2\DemoBazaakV2.AssemblyInfo.cs
+C:\koodit\KooditHarj\Csharp\DemoBazaak\DemoBazaak\DemoBazaakV2\DemoBazaakV2\obj\Debug\netcoreapp2.2\DemoBazaakV2.dll
+C:\koodit\KooditHarj\Csharp\DemoBazaak\DemoBazaak\DemoBazaakV2\DemoBazaakV2\obj\Debug\netcoreapp2.2\DemoBazaakV2.pdb
